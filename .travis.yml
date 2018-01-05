@@ -29,8 +29,11 @@ matrix:
   include:
     - os: linux
       env: TOOLCHAIN=gcc-5
-    - os: linux
-      env: TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx
+
+    # FIXME: "Tool not found in PATH: ant"
+    # - os: linux
+    #   env: TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx
+
     - os: osx
       env: TOOLCHAIN=libcxx
     - os: osx
