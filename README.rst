@@ -1,3 +1,13 @@
+|travis| |appveyor|
+
+.. |travis| image:: https://img.shields.io/travis/forexample/urho3d-with-hunter/master.svg?style=flat-square&label=Linux%20OSX%20Android
+  :target: https://travis-ci.org/forexample/urho3d-with-hunter/builds
+  :alt: Travis CI
+
+.. |appveyor| image:: https://img.shields.io/appveyor/ci/ruslo/urho3d-with-hunter/master.svg?style=flat-squre&label=Windows
+  :target: https://ci.appveyor.com/project/ruslo/urho3d-with-hunter/history
+  :alt: AppVeyor CI
+
 Setup
 -----
 
