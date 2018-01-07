@@ -16,6 +16,7 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
+      - ant
       - python3-pip
       - libegl1-mesa-dev
       - libgl1-mesa-dev
@@ -29,15 +30,14 @@ matrix:
   include:
     - os: linux
       env: TOOLCHAIN=gcc-5
-
-    # FIXME: "Tool not found in PATH: ant"
-    # - os: linux
-    #   env: TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx
-
+    - os: linux
+      env: TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx
     - os: osx
       env: TOOLCHAIN=libcxx
     - os: osx
       env: TOOLCHAIN=osx-10-12
+    - os: osx
+      env: TOOLCHAIN=ios-nocodesign-10-3
 
 install:
   # Info about OS
