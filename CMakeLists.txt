@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.9)
 
 include("cmake/HunterGate.cmake")
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.19.219.tar.gz"
-    SHA1 "a6ed16e70b1c235fdcfef07ad406aa7c737d4be2"
+    URL "https://github.com/ruslo/hunter/archive/v0.19.221.tar.gz"
+    SHA1 "dc138cc9d1b5badf01e62ab0849f73c82e8ffd1d"
     LOCAL
 )
 
@@ -11,6 +11,13 @@ project(Urho3D-example)
 
 hunter_add_package(Urho3D)
 find_package(Urho3D CONFIG REQUIRED)
+
+if(WIN32)
+  set(resources "${URHO3D_ROOT}/share/Resources")
+else()
+  set(resources "${URHO3D_ROOT}/share/Urho3D/Resources")
+endif()
+
 
 set(
     sources
@@ -22,6 +29,23 @@ set(
     SkeletalAnimation.h
 )
 
+if(IOS)
+  set(
+      ios_resources
+      "${resources}/Data/Textures/UrhoIcon.png"
+      "${resources}/Data/Textures/UrhoIcon.icns"
+      "${resources}/CoreData"
+      "${resources}/Data"
+  )
+  set_source_files_properties(
+      ${ios_resources}
+      PROPERTIES
+      MACOSX_PACKAGE_LOCATION
+      Resources
+  )
+  list(APPEND sources ${ios_resources})
+endif()
+
 if(ANDROID)
   list(APPEND sources "${URHO3D_ROOT}/include/SDL2/android/SDL_android_main.c")
   # On Android we are building '*.so' library that will be loaded from Java code
@@ -31,11 +55,13 @@ else()
 endif()
 
 target_link_libraries(SkeletalAnimation PUBLIC Urho3D::Urho3D)
-
-if(WIN32)
-  set(resources "${URHO3D_ROOT}/share/Resources")
-else()
-  set(resources "${URHO3D_ROOT}/share/Urho3D/Resources")
+if(IOS)
+  set_target_properties(
+      SkeletalAnimation
+      PROPERTIES
+      XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY 1,2
+      MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_LIST_DIR}/Info.plist.in"
+  )
 endif()
 
 if(ANDROID)
@@ -75,7 +101,9 @@ if(ANDROID)
       MANIFEST_TEMPLATE "${CMAKE_CURRENT_LIST_DIR}/android/AndroidManifest.xml.in"
       ACTIVITY_LAUNCH "SampleLauncher"
   )
-else()
+endif()
+
+if(NOT CMAKE_CROSSCOMPILING)
   enable_testing()
   add_test(NAME SkeletalAnimation COMMAND SkeletalAnimation -pp "${resources}")
 endif()
