@@ -1,6 +1,6 @@
 |travis| |appveyor|
 
-.. |travis| image:: https://img.shields.io/travis/forexample/urho3d-with-hunter/master.svg?style=flat-square&label=Linux%20OSX%20Android
+.. |travis| image:: https://img.shields.io/travis/forexample/urho3d-with-hunter/master.svg?style=flat-square&label=Linux%20OSX%20Android%20iOS
   :target: https://travis-ci.org/forexample/urho3d-with-hunter/builds
   :alt: Travis CI
 
@@ -104,3 +104,18 @@ To build APK and launch it on device add ``--target SkeletalAnimation-launch``:
 .. code-block:: none
 
   [urho3d-with-hunter]> polly.py --toolchain android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx --verbose --config Release --target SkeletalAnimation-launch
+
+iOS
+---
+
+.. code-block:: none
+
+  [urho3d-with-hunter]> polly.py --toolchain ios-10-3 --verbose --config Release
+
+To run example add ``--open`` to open Xcode:
+
+.. code-block:: none
+
+  [urho3d-with-hunter]> polly.py --toolchain ios-10-3 --verbose --config Release --open
+
+Select ``SkeletalAnimation`` executable in opened Xcode project and run it.
