@@ -51,8 +51,6 @@ Get sources:
   > cd urho3d-with-hunter
   [urho3d-with-hunter]>
 
-* https://docs.hunter.sh/en/latest/packages/pkg/Urho3D.html
-
 Linux
 -----
 
@@ -119,3 +117,13 @@ To run example add ``--open`` to open Xcode:
   [urho3d-with-hunter]> polly.py --toolchain ios-10-3 --verbose --config Release --open
 
 Select ``SkeletalAnimation`` executable in opened Xcode project and run it.
+
+Screen
+------
+
+.. image:: https://user-images.githubusercontent.com/4346993/33789459-90f9ee6e-dc89-11e7-99f4-31ad20f3b1a0.gif
+
+Hunter
+------
+
+* https://docs.hunter.sh/en/latest/packages/pkg/Urho3D.html
